@@ -1,0 +1,53 @@
+[
+  {
+    "id": "cut-ac-1h",
+    "formulaType": "cut_ac_hours",
+    "targetCategory": "cooling",
+    "targetTemplateIds": ["air-conditioner"],
+    "hoursReduced": 1,
+    "title": "Cut AC by 1 hour a day",
+    "description": "Turn off the air conditioner 1 hour earlier or use a timer and let a fan keep circulating cool air.",
+    "badge": "High impact"
+  },
+  {
+    "id": "raise-ac-temp-2c",
+    "formulaType": "percent_of_target",
+    "targetCategory": "cooling",
+    "targetTemplateIds": ["air-conditioner"],
+    "percentReduction": 0.08,
+    "title": "Raise AC temperature by 2°C",
+    "description": "Setting your AC to 24°C–25°C instead of 22°C reduces compressor runtime by about 8% per degree without sacrificing comfort.",
+    "badge": "Zero effort"
+  },
+  {
+    "id": "switch-bulbs-to-led",
+    "formulaType": "lighting_led_upgrade",
+    "targetCategory": "lighting",
+    "targetTemplateIds": ["led-bulb", "security-light"],
+    "percentReduction": 0.625,
+    "title": "Switch bulbs to high-efficiency LED",
+    "description": "Replace higher-wattage or older bulbs with modern 7W–9W LEDs and switch off unneeded outdoor or hallway lights.",
+    "badge": "Lighting win"
+  },
+  {
+    "id": "unplug-standby-devices",
+    "formulaType": "standby_unplug",
+    "targetCategory": "standby",
+    "standbyWattsPerDevice": 12.5,
+    "defaultIdleHours": 16,
+    "title": "Unplug standby devices at the wall",
+    "description": "TVs, decoders, microwaves, and chargers keep drawing phantom power when idle. Switch off wall sockets overnight.",
+    "badge": "Easy habit"
+  },
+  {
+    "id": "generic-reduce-1h",
+    "formulaType": "generic_top_appliance_1h",
+    "hoursReduced": 1,
+    "maxGeneratedTips": 3,
+    "minHoursPerDay": 2,
+    "excludeTemplateIds": ["air-conditioner", "wifi-router"],
+    "titleTemplate": "Use {applianceName} 1 hour less a day",
+    "descriptionTemplate": "Reducing {applianceName} runtime by 1 hour per day directly trims your daily kilowatt-hour consumption.",
+    "badge": "Daily habit"
+  }
+]

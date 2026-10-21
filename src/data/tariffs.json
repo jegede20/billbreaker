@@ -1,0 +1,200 @@
+[
+  {
+    "countryCode": "NG",
+    "countryName": "Nigeria",
+    "currencyCode": "NGN",
+    "currencySymbol": "₦",
+    "defaultRatePerKwh": 200,
+    "defaultFuelPricePerLiter": 950,
+    "defaultGeneratorLitersPerHour": 1.2,
+    "voltageRegion": "230V",
+    "rateNote": "Estimate based on urban Band A/B average — check your DISCO bill or token receipt."
+  },
+  {
+    "countryCode": "GH",
+    "countryName": "Ghana",
+    "currencyCode": "GHS",
+    "currencySymbol": "GH₵",
+    "defaultRatePerKwh": 1.85,
+    "defaultFuelPricePerLiter": 15.5,
+    "defaultGeneratorLitersPerHour": 1.2,
+    "voltageRegion": "230V",
+    "rateNote": "Estimate based on ECG residential tariff — check your bill."
+  },
+  {
+    "countryCode": "KE",
+    "countryName": "Kenya",
+    "currencyCode": "KES",
+    "currencySymbol": "KSh",
+    "defaultRatePerKwh": 28,
+    "defaultFuelPricePerLiter": 188,
+    "defaultGeneratorLitersPerHour": 1.2,
+    "voltageRegion": "230V",
+    "rateNote": "Estimate based on KPLC domestic tariff including levies — check your token slip."
+  },
+  {
+    "countryCode": "ZA",
+    "countryName": "South Africa",
+    "currencyCode": "ZAR",
+    "currencySymbol": "R",
+    "defaultRatePerKwh": 3.45,
+    "defaultFuelPricePerLiter": 22.5,
+    "defaultGeneratorLitersPerHour": 1.2,
+    "voltageRegion": "230V",
+    "rateNote": "Estimate based on Eskom/municipal home tariff — check your prepaid slip or bill."
+  },
+  {
+    "countryCode": "UG",
+    "countryName": "Uganda",
+    "currencyCode": "UGX",
+    "currencySymbol": "USh",
+    "defaultRatePerKwh": 805,
+    "defaultFuelPricePerLiter": 5300,
+    "defaultGeneratorLitersPerHour": 1.2,
+    "voltageRegion": "230V",
+    "rateNote": "Estimate based on Umeme domestic Yaka rate — check your bill."
+  },
+  {
+    "countryCode": "TZ",
+    "countryName": "Tanzania",
+    "currencyCode": "TZS",
+    "currencySymbol": "TSh",
+    "defaultRatePerKwh": 350,
+    "defaultFuelPricePerLiter": 3100,
+    "defaultGeneratorLitersPerHour": 1.2,
+    "voltageRegion": "230V",
+    "rateNote": "Estimate based on TANESCO LUKU domestic tariff — check your bill."
+  },
+  {
+    "countryCode": "RW",
+    "countryName": "Rwanda",
+    "currencyCode": "RWF",
+    "currencySymbol": "RF",
+    "defaultRatePerKwh": 210,
+    "defaultFuelPricePerLiter": 1650,
+    "defaultGeneratorLitersPerHour": 1.1,
+    "voltageRegion": "230V",
+    "rateNote": "Estimate based on REG residential rate — check your bill."
+  },
+  {
+    "countryCode": "EG",
+    "countryName": "Egypt",
+    "currencyCode": "EGP",
+    "currencySymbol": "E£",
+    "defaultRatePerKwh": 1.95,
+    "defaultFuelPricePerLiter": 13.75,
+    "defaultGeneratorLitersPerHour": 1.2,
+    "voltageRegion": "230V",
+    "rateNote": "Estimate based on residential tariff — check your electricity bill."
+  },
+  {
+    "countryCode": "ET",
+    "countryName": "Ethiopia",
+    "currencyCode": "ETB",
+    "currencySymbol": "Br",
+    "defaultRatePerKwh": 2.5,
+    "defaultFuelPricePerLiter": 85,
+    "defaultGeneratorLitersPerHour": 1.2,
+    "voltageRegion": "230V",
+    "rateNote": "Estimate based on EEU residential rate — check your bill."
+  },
+  {
+    "countryCode": "ZM",
+    "countryName": "Zambia",
+    "currencyCode": "ZMW",
+    "currencySymbol": "ZK",
+    "defaultRatePerKwh": 1.65,
+    "defaultFuelPricePerLiter": 32,
+    "defaultGeneratorLitersPerHour": 1.2,
+    "voltageRegion": "230V",
+    "rateNote": "Estimate based on ZESCO residential rate — check your bill."
+  },
+  {
+    "countryCode": "US",
+    "countryName": "United States",
+    "currencyCode": "USD",
+    "currencySymbol": "$",
+    "defaultRatePerKwh": 0.17,
+    "defaultFuelPricePerLiter": 0.95,
+    "defaultGeneratorLitersPerHour": 1.4,
+    "voltageRegion": "110V",
+    "rateNote": "Estimate based on US residential average — check your utility statement."
+  },
+  {
+    "countryCode": "GB",
+    "countryName": "United Kingdom",
+    "currencyCode": "GBP",
+    "currencySymbol": "£",
+    "defaultRatePerKwh": 0.25,
+    "defaultFuelPricePerLiter": 1.45,
+    "defaultGeneratorLitersPerHour": 1.2,
+    "voltageRegion": "230V",
+    "rateNote": "Estimate based on Ofgem price cap average — check your supplier bill."
+  },
+  {
+    "countryCode": "EU",
+    "countryName": "Eurozone (EUR)",
+    "currencyCode": "EUR",
+    "currencySymbol": "€",
+    "defaultRatePerKwh": 0.28,
+    "defaultFuelPricePerLiter": 1.75,
+    "defaultGeneratorLitersPerHour": 1.2,
+    "voltageRegion": "230V",
+    "rateNote": "Estimate based on European household average — check your utility bill."
+  },
+  {
+    "countryCode": "IN",
+    "countryName": "India",
+    "currencyCode": "INR",
+    "currencySymbol": "₹",
+    "defaultRatePerKwh": 7.5,
+    "defaultFuelPricePerLiter": 96,
+    "defaultGeneratorLitersPerHour": 1.1,
+    "voltageRegion": "230V",
+    "rateNote": "Estimate based on urban residential slab average — check your state DISCOM bill."
+  },
+  {
+    "countryCode": "CA",
+    "countryName": "Canada",
+    "currencyCode": "CAD",
+    "currencySymbol": "CA$",
+    "defaultRatePerKwh": 0.16,
+    "defaultFuelPricePerLiter": 1.6,
+    "defaultGeneratorLitersPerHour": 1.3,
+    "voltageRegion": "110V",
+    "rateNote": "Estimate based on provincial average — check your hydro bill."
+  },
+  {
+    "countryCode": "AU",
+    "countryName": "Australia",
+    "currencyCode": "AUD",
+    "currencySymbol": "A$",
+    "defaultRatePerKwh": 0.34,
+    "defaultFuelPricePerLiter": 1.9,
+    "defaultGeneratorLitersPerHour": 1.2,
+    "voltageRegion": "230V",
+    "rateNote": "Estimate based on residential tariff — check your retailer bill."
+  },
+  {
+    "countryCode": "BR",
+    "countryName": "Brazil",
+    "currencyCode": "BRL",
+    "currencySymbol": "R$",
+    "defaultRatePerKwh": 0.85,
+    "defaultFuelPricePerLiter": 5.8,
+    "defaultGeneratorLitersPerHour": 1.2,
+    "voltageRegion": "230V",
+    "rateNote": "Estimate based on residential average — check your bill."
+  },
+  {
+    "countryCode": "OTHER",
+    "countryName": "Other Country (Custom Rate)",
+    "currencyCode": "USD",
+    "currencySymbol": "$",
+    "defaultRatePerKwh": null,
+    "defaultFuelPricePerLiter": 1.2,
+    "defaultGeneratorLitersPerHour": 1.2,
+    "voltageRegion": "230V",
+    "rateNote": "No preset rate for this region — please enter the rate from your electricity bill."
+  }
+]
