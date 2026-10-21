@@ -741,18 +741,6 @@ export function LandingPage({ onStartApp }: LandingPageProps) {
           </p>
         </div>
       </footer>
-
-      {/* Sticky Bottom "Break my bill" Button on Mobile */}
-      <div className="md:hidden fixed bottom-0 inset-x-0 z-40 p-3 bg-[#FFFBF2]/95 border-t border-[#F0E7D3]">
-        <button
-          type="button"
-          onClick={() => onStartApp(selectedCurrency.countryCode)}
-          className="w-full min-h-[50px] py-3 px-6 rounded-2xl bg-[#F59E0B] text-[#1F2937] font-extrabold text-base inline-flex items-center justify-center gap-2 border border-[#1F2937]/15"
-        >
-          <span>{STRINGS.landing.primaryCta}</span>
-          <ArrowRightIcon size={18} />
-        </button>
-      </div>
     </div>
   );
 }
