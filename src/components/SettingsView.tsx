@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { BrandLogo } from '@/components/BrandLogo';
 import { CheckIcon, TrashIcon } from '@/components/Icons';
 import { getTariffPreset, TARIFF_PRESETS } from '@/lib/costEngine';
-import { formatMoney } from '@/lib/currency';
+import { formatMoney, getQuickTokenAmounts } from '@/lib/currency';
 import { STRINGS } from '@/lib/strings';
 import {
   HouseholdCostSummary,
@@ -39,6 +39,7 @@ interface SettingsViewProps {
   onUpdateSettings: (newSettings: UserSettings) => void;
   onResetAllData: () => void;
   onLoadSampleHousehold: () => void;
+  onOpenSetupWizard?: () => void;
 }
 
 export function SettingsView({
@@ -47,6 +48,7 @@ export function SettingsView({
   onUpdateSettings,
   onResetAllData,
   onLoadSampleHousehold,
+  onOpenSetupWizard,
 }: SettingsViewProps) {
   const [rateInput, setRateInput] = useState(String(settings.ratePerKwh));
   const [gridHoursInput, setGridHoursInput] = useState(
@@ -109,6 +111,7 @@ export function SettingsView({
   const handleCountrySelect = (countryCode: string) => {
     const nextPreset = getTariffPreset(countryCode);
     const nextRate = nextPreset.defaultRatePerKwh ?? settings.ratePerKwh;
+    const quickTokens = getQuickTokenAmounts(nextPreset.currencyCode, 0);
     setRateInput(String(nextRate));
     setFuelPriceInput(String(nextPreset.defaultFuelPricePerLiter));
     setLitersInput(String(nextPreset.defaultGeneratorLitersPerHour));
@@ -122,14 +125,17 @@ export function SettingsView({
       ratePerKwh: nextRate,
       generatorFuelPricePerLiter: nextPreset.defaultFuelPricePerLiter,
       generatorLitersPerHour: nextPreset.defaultGeneratorLitersPerHour,
+      lastTokenAmount: quickTokens[2] || 20000,
     });
     showSavedFeedback(`Switched to ${nextPreset.countryName} (${nextPreset.currencyCode}).`);
   };
 
   const handleCurrencySelect = (currencyCode: string) => {
+    const quickTokens = getQuickTokenAmounts(currencyCode, 0);
     onUpdateSettings({
       ...settings,
       currencyCode,
+      lastTokenAmount: quickTokens[2] || settings.lastTokenAmount,
     });
     showSavedFeedback(`Currency updated to ${currencyCode}.`);
   };
@@ -566,6 +572,7 @@ export function SettingsView({
         </div>
 
         <form
+          noValidate
           onSubmit={handleApplyCalibration}
           className="grid grid-cols-1 md:grid-cols-12 gap-4 items-end"
         >
@@ -687,6 +694,16 @@ export function SettingsView({
             >
               {STRINGS.dashboard.loadSampleBtn}
             </button>
+
+            {onOpenSetupWizard && (
+              <button
+                type="button"
+                onClick={onOpenSetupWizard}
+                className="min-h-[46px] px-4 py-2.5 rounded-xl bg-[#FFFBF2] hover:bg-[#F0E7D3]/50 border border-[#F0E7D3] text-[#1F2937] font-bold text-sm"
+              >
+                Re-run setup wizard
+              </button>
+            )}
 
             <button
               type="button"

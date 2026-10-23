@@ -407,7 +407,7 @@ export function AppliancesView({
               </button>
             </div>
 
-            <form onSubmit={handleSaveForm} className="space-y-4">
+            <form noValidate onSubmit={handleSaveForm} className="space-y-4">
               <div>
                 <label
                   htmlFor="app-form-name"

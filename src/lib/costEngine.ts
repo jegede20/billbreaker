@@ -424,9 +424,13 @@ export function computeSavingsTips(
       const maxTips = def.maxGeneratedTips ?? 3;
       const hoursReduced = def.hoursReduced ?? 1;
 
+      const hasAllFourCoreTips = results.length >= 4;
       const candidates = items.filter((it) => {
         if (isAcAppliance(it.appliance)) return false;
         if (excluded.has(it.appliance.templateId)) return false;
+        if (hasAllFourCoreTips && it.appliance.id.startsWith('sample-')) {
+          return false;
+        }
         const poweredHours = it.gridHoursPerDay + it.backupHoursPerDay;
         return poweredHours >= minHours && it.calibratedMonthlyCost > 0;
       });

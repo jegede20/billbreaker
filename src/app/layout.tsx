@@ -11,7 +11,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://billbreaker.vercel.app'),
+  metadataBase: new URL('https://billbreaker-beta.vercel.app'),
   title: 'BillBreaker — Find out which appliance is consuming your light bill.',
   description:
     'Add your appliances, see what each one costs per month, and learn which changes save you the most money. Free, no signup, works offline.',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: 'BillBreaker — Find out which appliance is consuming your light bill.',
     description:
       'Add your appliances, see what each one costs, and learn which changes save you the most money. Free, no signup, works offline.',
-    url: 'https://billbreaker.vercel.app',
+    url: 'https://billbreaker-beta.vercel.app',
   },
   twitter: {
     card: 'summary_large_image',

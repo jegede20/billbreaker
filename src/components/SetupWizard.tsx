@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrandLogo } from '@/components/BrandLogo';
 import { ArrowRightIcon, CheckIcon } from '@/components/Icons';
 import { getTariffPreset, TARIFF_PRESETS } from '@/lib/costEngine';
@@ -71,6 +71,24 @@ export function SetupWizard({
   );
   const [useStarterPack, setUseStarterPack] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    setCountryCode(initialSettings.countryCode);
+    setCurrencyCode(initialSettings.currencyCode);
+    setMeterType(initialSettings.meterType);
+    setRateInput(
+      initialSettings.ratePerKwh > 0 ? String(initialSettings.ratePerKwh) : ''
+    );
+    setPowerSources(
+      initialSettings.powerSources.length > 0
+        ? initialSettings.powerSources
+        : ['grid']
+    );
+    setGridHoursInput(String(initialSettings.gridSupplyHours ?? 24));
+    setFuelPriceInput(String(initialSettings.generatorFuelPricePerLiter));
+    setLitersPerHourInput(String(initialSettings.generatorLitersPerHour));
+    setInverterRateInput(String(initialSettings.inverterCostPerKwh));
+  }, [initialSettings]);
 
   const selectedPreset = getTariffPreset(countryCode);
 

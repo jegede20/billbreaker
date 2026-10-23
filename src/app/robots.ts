@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://billbreaker.vercel.app/sitemap.xml',
+    sitemap: 'https://billbreaker-beta.vercel.app/sitemap.xml',
   };
 }

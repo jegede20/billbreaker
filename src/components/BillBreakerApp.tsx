@@ -189,6 +189,9 @@ export function BillBreakerApp() {
     setState((prev) => ({
       ...prev,
       appliances: prev.appliances.filter((item) => item.id !== id),
+      appliedTipIds: prev.appliedTipIds.filter(
+        (tipId) => tipId !== `generic-1h-${id}`
+      ),
     }));
   };
 
@@ -493,6 +496,7 @@ export function BillBreakerApp() {
               onUpdateSettings={handleUpdateSettings}
               onResetAllData={handleResetAllData}
               onLoadSampleHousehold={handleLoadSampleHousehold}
+              onOpenSetupWizard={() => setViewMode('setup')}
             />
           )}
 

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { calculateTokenDuration } from '@/lib/costEngine';
 import { formatMoney, getQuickTokenAmounts } from '@/lib/currency';
 import { STRINGS } from '@/lib/strings';
@@ -24,6 +24,10 @@ export function TokensView({
     String(settings.lastTokenAmount || 20000)
   );
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    setTokenInput(String(settings.lastTokenAmount || 20000));
+  }, [settings.lastTokenAmount, settings.currencyCode]);
 
   const parsedAmount = Math.max(0, parseFloat(tokenInput) || 0);
   const quickChips = getQuickTokenAmounts(
@@ -70,6 +74,8 @@ export function TokensView({
     Math.round(tokenResult.daysWithAllSavings)
   );
   const extraDays = Math.max(0, roundedSavingsDays - roundedCurrentDays);
+  const allTipsAlreadyApplied =
+    summary.tips.length > 0 && summary.tips.every((t) => t.applied);
 
   const maxBarDays = Math.max(roundedSavingsDays, roundedCurrentDays, 1);
   const currentBarPct = Math.min(
@@ -233,7 +239,7 @@ export function TokensView({
                   <h3 className="text-sm font-extrabold text-[#1F2937]">
                     {STRINGS.tokens.comparisonTitle}
                   </h3>
-                  {extraDays > 0 && (
+                  {extraDays > 0 && !allTipsAlreadyApplied && (
                     <button
                       type="button"
                       onClick={onApplyAllTips}
@@ -241,6 +247,11 @@ export function TokensView({
                     >
                       Apply all savings tips
                     </button>
+                  )}
+                  {allTipsAlreadyApplied && (
+                    <span className="text-xs font-extrabold text-[#15803D]">
+                      All savings active
+                    </span>
                   )}
                 </div>
 

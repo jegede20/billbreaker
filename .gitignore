@@ -10,6 +10,7 @@
 /.local
 /.bash*
 /.profile
+/uploads
 
 # testing
 /coverage

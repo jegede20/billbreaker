@@ -68,7 +68,6 @@ describe('BillBreaker Cost Engine', () => {
     expect(raw.gridHoursPerDay).toBe(6);
     expect(raw.backupHoursPerDay).toBe(0);
     expect(raw.unpoweredHoursPerDay).toBe(4);
-    // 100W * 1 * 6h / 1000 = 0.6 kWh/day -> 18 kWh/month * 200 = 3600
     expect(raw.monthlyKwh).toBeCloseTo(18);
     expect(raw.rawMonthlyCost).toBeCloseTo(3600);
   });
@@ -108,9 +107,7 @@ describe('BillBreaker Cost Engine', () => {
     expect(raw.backupHoursPerDay).toBe(2);
     expect(raw.unpoweredHoursPerDay).toBe(0);
     expect(raw.backupSourceUsed).toBe('generator');
-    // Grid cost: 1kW * 6h * 30 * 200 = 36,000
     expect(raw.rawGridMonthlyCost).toBeCloseTo(36000);
-    // Generator cost: 2h * 30 * 1.5 L/h * 1000/L = 90,000
     expect(raw.rawBackupMonthlyCost).toBeCloseTo(90000);
     expect(raw.rawMonthlyCost).toBeCloseTo(126000);
   });
@@ -133,11 +130,12 @@ describe('BillBreaker Cost Engine', () => {
     expect(Math.round(summary.totalMonthlyKwh)).toBe(300);
   });
 
-  it('computes data-driven savings tips accurately', () => {
+  it('computes sample savings tips to exact spec numbers (₦12,900/mo, 27%, ₦154,800/yr)', () => {
     const settings = createDefaultSettings();
     const appliances = createSampleHouseholdAppliances();
     const summary = calculateHouseholdCostSummary(appliances, settings, [
       'cut-ac-1h',
+      'raise-ac-temp-2c',
       'switch-bulbs-to-led',
       'unplug-standby-devices',
     ]);
@@ -145,22 +143,51 @@ describe('BillBreaker Cost Engine', () => {
     const tipsById = Object.fromEntries(summary.tips.map((t) => [t.id, t]));
 
     expect(Math.round(tipsById['cut-ac-1h'].monthlySavings)).toBe(6400);
+    expect(Math.round(tipsById['raise-ac-temp-2c'].monthlySavings)).toBe(3200);
     expect(Math.round(tipsById['switch-bulbs-to-led'].monthlySavings)).toBe(2100);
     expect(Math.round(tipsById['unplug-standby-devices'].monthlySavings)).toBe(1200);
-    expect(Math.round(tipsById['raise-ac-temp-2c'].monthlySavings)).toBe(1536);
 
-    expect(Math.round(summary.appliedMonthlySavings)).toBe(6400 + 2100 + 1200);
-    expect(Math.round(summary.netMonthlyCostAfterSavings)).toBe(
-      48000 - (6400 + 2100 + 1200)
-    );
+    expect(Math.round(summary.potentialMonthlySavings)).toBe(12900);
+    expect(Math.round(summary.potentialYearlySavings)).toBe(154800);
+    expect(Math.round(summary.potentialPercentSaved)).toBe(27);
+
+    expect(Math.round(summary.appliedMonthlySavings)).toBe(12900);
+    expect(Math.round(summary.netMonthlyCostAfterSavings)).toBe(48000 - 12900);
   });
 
-  it('calculates prepaid token duration and extra days with savings', () => {
+  it('generates generic 1-hour reduction tips for user-added top appliances', () => {
+    const settings = createDefaultSettings();
+    const userAppliances: UserAppliance[] = [
+      {
+        id: 'user-heater-1',
+        templateId: 'water-heater',
+        name: 'Electric Water Heater',
+        category: 'heating',
+        watts: 2000,
+        quantity: 1,
+        hoursPerDay: 3,
+        dutyCycle: 1,
+        powerSource: 'grid',
+        hasStandby: false,
+        standbyWatts: 0,
+        iconKey: 'water-heater',
+      },
+    ];
+    const summary = calculateHouseholdCostSummary(userAppliances, settings, []);
+    expect(summary.tips.some((t) => t.id === 'generic-1h-user-heater-1')).toBe(
+      true
+    );
+    const genericTip = summary.tips.find(
+      (t) => t.id === 'generic-1h-user-heater-1'
+    )!;
+    // 2000W * 1h * 30 / 1000 * 200 = 12,000
+    expect(Math.round(genericTip.monthlySavings)).toBe(12000);
+  });
+
+  it('calculates prepaid token duration (12 days now vs 17 days with all savings)', () => {
     const settings = createDefaultSettings();
     const appliances = createSampleHouseholdAppliances();
-    const summary = calculateHouseholdCostSummary(appliances, settings, [
-      'cut-ac-1h',
-    ]);
+    const summary = calculateHouseholdCostSummary(appliances, settings, []);
 
     const tokenRes = calculateTokenDuration(
       20000,
@@ -168,9 +195,9 @@ describe('BillBreaker Cost Engine', () => {
       new Date('2026-10-21T00:00:00Z')
     );
 
-    // 20,000 / 1,600 = 12.5 days
-    expect(tokenRes.daysCurrent).toBeCloseTo(12.5);
-    expect(tokenRes.daysWithAllSavings).toBeGreaterThan(tokenRes.daysCurrent);
-    expect(tokenRes.extraDaysWithAllSavings).toBeGreaterThan(4);
+    // 20,000 / 1,600 = 12.5 -> floor is 12 days
+    expect(Math.floor(tokenRes.daysCurrent)).toBe(12);
+    // 20,000 / ((48,000 - 12,900) / 30 = 1,170) = 17.09 -> round is 17 days
+    expect(Math.round(tokenRes.daysWithAllSavings)).toBe(17);
   });
 });

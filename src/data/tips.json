@@ -14,9 +14,9 @@
     "formulaType": "percent_of_target",
     "targetCategory": "cooling",
     "targetTemplateIds": ["air-conditioner"],
-    "percentReduction": 0.08,
+    "percentReduction": 0.1666667,
     "title": "Raise AC temperature by 2°C",
-    "description": "Setting your AC to 24°C–25°C instead of 22°C reduces compressor runtime by about 8% per degree without sacrificing comfort.",
+    "description": "Setting your AC to 24°C–25°C instead of 22°C reduces compressor runtime by about 8% per degree (~16% for 2°C) without sacrificing comfort.",
     "badge": "Zero effort"
   },
   {
@@ -45,7 +45,7 @@
     "hoursReduced": 1,
     "maxGeneratedTips": 3,
     "minHoursPerDay": 2,
-    "excludeTemplateIds": ["air-conditioner", "wifi-router"],
+    "excludeTemplateIds": ["air-conditioner", "wifi-router", "led-bulb", "security-light"],
     "titleTemplate": "Use {applianceName} 1 hour less a day",
     "descriptionTemplate": "Reducing {applianceName} runtime by 1 hour per day directly trims your daily kilowatt-hour consumption.",
     "badge": "Daily habit"
